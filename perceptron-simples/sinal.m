@@ -3,9 +3,8 @@
 ##
 ## @end deftypefn
 
-## Author: Átila Camurça <atila@the-machine>
+## Author: Átila Camurça <camurca.home@gmail.com>
 ## Created: 2018-05-26
-
 function y = sinal (u)
     if (u >= 0)
         y = 1;
