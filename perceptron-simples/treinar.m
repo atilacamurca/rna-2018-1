@@ -1,11 +1,12 @@
 ## Calcular os pesos para uma base X com labels y
-## @deftypefn {} {@var{pesos}, @var{vies}} treinar (@var{X}, @var{y})
+## @deftypefn {} {@var{pesos}, @var{vies}, @var{mconfusao}} treinar (@var{X}, @var{y})
 ##
 ## @end deftypefn
 
 ## Author: Átila Camurça <camurca.home@gmail.com>
 ## Created: 2018-05-26
-function [pesos, vies] = treinar (X, y)
+%% https://machinelearningmastery.com/confusion-matrix-machine-learning/
+function [pesos, vies, mconfusao] = treinar (X, y)
 
     % Inicializar pesos com valores aleatórios
     pesos = (rand(1, columns(X) + 1) .* 0.2 + 0.5) ./ 2;
@@ -13,6 +14,7 @@ function [pesos, vies] = treinar (X, y)
     max_iteracoes = 100;
     taxa_aprendizagem = 0.1;
     vies = -1;
+    mconfusao = zeros(2, 2);
 
     for iteracao = 1 : max_iteracoes
         sum_erro = 0;
@@ -39,7 +41,8 @@ function [pesos, vies] = treinar (X, y)
             desejado = y(index_j);
             calculado = predizer(pesos, x_);
 
-            sum_erro += desejado - calculado;
+            sum_erro += (desejado - calculado != 0);
+            mconfusao(desejado + 1, calculado + 1) += 1;
         end
 
         if sum_erro == 0
