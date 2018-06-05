@@ -36,3 +36,5 @@ if not_norm > 1
 end
 
 fclose(FID);
+
+save -mat iris-dataset.mat X y

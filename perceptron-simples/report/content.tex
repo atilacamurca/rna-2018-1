@@ -1,0 +1,100 @@
+\section{Introdução}\label{introduuxe7uxe3o}
+
+Em 1943 McCulloch e Pitts propuseram um modelo matemático para o
+neurônio biológico. A ideia era ter uma forma computacional para dado um
+conjunto de entrada poder ser calculado uma saída. Entretanto era
+necessário obter os chamados pesos sinápticos de alguma forma. Daí em
+1958 Rosenblatt propôs um algoritmo chamado Perceptron Simples. Esse
+algoritmo consiste do neurônio de McCulloch e Pitts com uma regra de
+aprendizagem.
+
+\section{Problemas}\label{problemas}
+
+\subsection{Artificial I}\label{artificial-i}
+
+Para o problema Artificial I foi gerado uma base no seguinte formato:
+
+\begin{itemize}
+\tightlist
+\item
+  Para valores entre
+  \((0 : 0.2; 0 : 0.2), (0 : 0.2; 0.5 : 1), (0.5 : 1; 0 : 0.2)\) é
+  considerado classe 0, com 30 itens na base;
+\item
+  Para valores entre \((0.5 : 1; 0.5 : 1)\) é considerado classe 1, com
+  10 itens na base.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ClasseZero = [}
+    \CommentTok{% 0 0}
+    \FunctionTok{rand}\NormalTok{(}\FloatTok{10}\NormalTok{, }\FloatTok{1}\NormalTok{) .* }\FloatTok{0.2} \FunctionTok{rand}\NormalTok{(}\FloatTok{10}\NormalTok{, }\FloatTok{1}\NormalTok{) .* }\FloatTok{0.2}\NormalTok{;}
+    \CommentTok{% 0 1}
+    \FunctionTok{rand}\NormalTok{(}\FloatTok{10}\NormalTok{, }\FloatTok{1}\NormalTok{) .* }\FloatTok{0.2} \FunctionTok{rand}\NormalTok{(}\FloatTok{10}\NormalTok{, }\FloatTok{1}\NormalTok{) .* }\FloatTok{0.5} \NormalTok{+ }\FloatTok{0.5}\NormalTok{;}
+    \CommentTok{% 1 0}
+    \FunctionTok{rand}\NormalTok{(}\FloatTok{10}\NormalTok{, }\FloatTok{1}\NormalTok{) .* }\FloatTok{0.5} \NormalTok{+ }\FloatTok{0.5} \FunctionTok{rand}\NormalTok{(}\FloatTok{10}\NormalTok{, }\FloatTok{1}\NormalTok{) .* }\FloatTok{0.2}\NormalTok{;}
+\NormalTok{];}
+\NormalTok{ClasseOne = }\FunctionTok{rand}\NormalTok{(}\FloatTok{10}\NormalTok{, }\FloatTok{2}\NormalTok{) .* }\FloatTok{0.5} \NormalTok{+ }\FloatTok{0.5}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Iris}\label{iris}
+
+O problema da Iris é a classificação de uma espécie de flor. Essa base
+de dados é formada por 3 categorias: Setosa, Versicolor e Virgínica.
+Como o Perceptron Simples não é capaz de classificar problemas não
+binários foi necessário adaptar o problema para classificação de: Setosa
+ou Outra, onde:
+
+\begin{itemize}
+\tightlist
+\item
+  Setosa é classificada como classe 1 (um), com 40 itens na base;
+\item
+  Enquanto outras são classificadas com classe 0 (zero), com 80 itens na
+  base.
+\end{itemize}
+
+\section{Resultados}\label{resultados}
+
+\subsection{Artificial I}\label{artificial-i-1}
+
+Para um dos melhores resultados obtidos de 20 realizações foram
+encontrados:
+
+Matrix de Confusão:
+
+\begin{verbatim}
+10  0
+ 1  3
+\end{verbatim}
+
+Acurácia: 92.85\%
+
+\subsection{Iris}\label{iris-1}
+
+Para um dos melhores resultados obtidos de 20 realizações foram
+encontrados:
+
+Matrix de Confusão:
+
+\begin{verbatim}
+20  1
+ 0  9
+\end{verbatim}
+
+Acurácia: 96.66\%
+
+\section{Conclusão}\label{conclusuxe3o}
+
+Apesar de muito simples o Perceptron Simples é um ótimo algoritmo de
+classificação binária, dado qualquer problema ele é capaz de encontrar
+uma regra de aprendizagem que garante encontrar uma solução num número
+finito de iterações.
+
+Repositório com código-fonte:
+\url{https://github.com/atilacamurca/rna-2018-1}
+
+Link para download:
+\url{https://github.com/atilacamurca/rna-2018-1/archive/master.zip}

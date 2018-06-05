@@ -1,28 +1,23 @@
-## Calcular os pesos para uma base X com labels y
-## @deftypefn {} {@var{pesos}, @var{vies}, @var{mconfusao}} treinar (@var{X}, @var{y})
-##
-## @end deftypefn
+%% Calcular os pesos para uma base X com labels y
+%% @deftypefn {} {@var{pesos}, @var{vies}} treinar (@var{X}, @var{y})
+%%
+%% @end deftypefn
 
-## Author: Átila Camurça <camurca.home@gmail.com>
-## Created: 2018-05-26
+%% Author: Átila Camurça <camurca.home@gmail.com>
+%% Created: 2018-05-26
 %% https://machinelearningmastery.com/confusion-matrix-machine-learning/
-function [pesos, vies, mconfusao] = treinar (X, y)
+function [pesos, vies] = treinar (X, y)
 
-    % Inicializar pesos com valores aleatórios
+    % Inicializar pesos com valores aleatórios normalizados
     pesos = (rand(1, columns(X) + 1) .* 0.2 + 0.5) ./ 2;
-    % pesos = [1.5 1 1]
+    % pesos = zeros(1, columns(X) + 1);
     max_iteracoes = 100;
     taxa_aprendizagem = 0.1;
     vies = -1;
-    mconfusao = zeros(2, 2);
 
     for iteracao = 1 : max_iteracoes
         sum_erro = 0;
-
-        % disp(['iteração ', num2str(iteracao)]);
-        % disp(['num linhas ', num2str(rows(X))])
         printf('.')
-
         for index_ = 1 : rows(X)
             % disp(['linha ', num2str(index_)]);
             x_ = [[vies] X(index_, :)]; % obter toda a coluna da linha `index_`
@@ -42,7 +37,6 @@ function [pesos, vies, mconfusao] = treinar (X, y)
             calculado = predizer(pesos, x_);
 
             sum_erro += (desejado - calculado != 0);
-            mconfusao(desejado + 1, calculado + 1) += 1;
         end
 
         if sum_erro == 0
