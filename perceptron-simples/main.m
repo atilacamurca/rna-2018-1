@@ -51,3 +51,8 @@ for realizacao = 1 : 20
     %plot(dots, (pesos(2) .* dots) / pesos(1) * pesos(3), 'ko',
     %    X_teste_Zero, Y_teste_Zero, 'b*', X_teste_One, Y_teste_One, 'rx');
 end
+
+% Plot hyperplano classificador
+% x1 = -1:1:1;
+% x2 = - (pesos(3) + x1 * pesos(1)) / pesos(2);
+% plot(x1,x2,'g');
