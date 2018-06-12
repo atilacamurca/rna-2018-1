@@ -1,0 +1,82 @@
+# Introdução
+
+Similar ao Perceptron Simples na característica de possuir apenas uma camada, o ADALINE
+se diferencia no tipo de problema a ser resolvido, no caso problemas de regressão.
+A atualização dos pesos sinápticos é feita da mesma forma, entretanto não é usado
+uma função de ativação, a saída é calculada diretamente de:
+
+$$
+u = w^T x = \sum^p_{i = 0} w_i x_i
+$$
+
+A ideia é que os pesos se ajustem de tal forma que crie uma reta o mais próximo
+possível de todos os pontos da base de treinamento.
+
+# Problemas
+
+## Artificial I
+
+Problema com uma variável independente e uma dependente, tal que:
+
+$$f(x) = ax + b$$
+
+A função escolhida foi $f(x) = 2x + 3$, e ruído com valores entre $0.25$ e $0.5$.
+
+## Artificial II
+
+# Resultados
+
+## Artificial I
+
+Seja $y = w_0 x_0 + w_1 x_1$ e $x_0 = -1$, a partir dos dados da realização abaixo
+podemos ver que os pesos estão bem próximos do esperado:
+
+\begin{align}
+w_0 = 3.3746 &\approx 3 \\
+w_1 = 1.9960 &\approx 2
+\end{align}
+
+~~~
+pesos =
+
+  -3.3746   1.9960
+
+====  Sumário  =====
+   Realização: 2
+   MSE Treino: 0.00484138581311522
+  RMSE Treino: 0.06958
+
+desejado: 3.1623, calculado: 3.2738
+desejado: 2.2016, calculado: 2.2657
+desejado: 3.5498, calculado: 3.5964
+desejado: 4.6203, calculado: 4.5239
+desejado: 1.6037, calculado: 1.7012
+desejado: 5.0342, calculado: 5.0884
+desejado: 3.8168, calculado: 3.7577
+desejado: 4.2099, calculado: 4.2013
+desejado: 4.9089, calculado: 4.8061
+desejado: 5.1364, calculado: 5.2497
+desejado: 2.1618, calculado: 2.1044
+desejado: 2.0717, calculado: 2.0238
+desejado: 3.6192, calculado: 3.5158
+desejado: 4.0313, calculado: 4.04
+desejado: 4.4894, calculado: 4.6045
+desejado: 4.7112, calculado: 4.6449
+desejado: 4.5589, calculado: 4.4836
+desejado: 4.6462, calculado: 4.7658
+desejado: 2.9897, calculado: 2.9916
+desejado: 3.1593, calculado: 3.1932
+
+    MSE Teste: 0.00484138581311522
+   RMSE Teste: 0.06958
+~~~
+
+## Artificial II
+
+# Conclusão
+
+Dado que o ruído adicionado a função não seja muito alto, e que os valores da
+base estejam normalizados, o ADALINE demonstra bons resultados em problemas de
+regressão. Se os valores decimais fossem ignorados a taxa de acerto no problema
+Artificial I, por exemplo, seria de 100% na realização 2, o que mostra sua
+alta precisão, dependendo apenas da modelagem do problema.
