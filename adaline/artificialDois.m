@@ -1,12 +1,15 @@
 clear; close all; clc;
 
-X = normalizar(linspace(-10, 10)');
+X = normalizar([linspace(-10, 10)' linspace(-10, 10)']);
 
-% y = f(x) = 2x + 3
-y = 2 * X + 3;
+% f(x) = 1/2 x1 + 2 x2 + 1
+y = [ 0.5 * X(:,1) + 2 * X(:,2) + 1 ];
 % y_ruido = y + rand(rows(y), 1) .* 4 + 2;
-y_ruido = y + (rand(rows(y), 1) .* 0.5 + 0.5) ./ 2;
-% plot(X, y_ruido', 'o');
+y_ruido = y + (rand(rows(y), 1) * 0.5) ./ 2;
+% plot3(X(:,1), X(:,2), y_ruido, 'o');
+
+min_realizacao_rmse = -1;
+min_realizacao_index = -1;
 
 for realizacao = 1 : 20
 
@@ -41,9 +44,15 @@ for realizacao = 1 : 20
 
     realizacao_mse = meansq(teste - saidas); % Erro Quadrático Médio.
     realizacao_rmse = sqrt(mse);
+    if min_realizacao_rmse == -1 || min_realizacao_rmse > realizacao_rmse
+        min_realizacao_rmse = realizacao_rmse;
+        min_realizacao_index = realizacao;
+    end
     disp('');
-    disp(['    MSE Teste: ', mat2str(mse)]);
-    disp(['   RMSE Teste: ', num2str(rmse)]);
+    disp(['      MSE Teste: ', mat2str(mse)]);
+    disp(['     RMSE Teste: ', num2str(rmse)]);
     disp('');
 
 end
+
+disp([' Min RMSE Teste: ', num2str(min_realizacao_rmse), ' index: ', num2str(min_realizacao_index)])

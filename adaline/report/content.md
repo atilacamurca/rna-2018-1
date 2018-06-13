@@ -24,6 +24,14 @@ A função escolhida foi $f(x) = 2x + 3$, e ruído com valores entre $0.25$ e $0
 
 ## Artificial II
 
+Problema com duas variáveis independentes, tal que:
+
+$$
+f(x) = ax_1 + bx_2 + c
+$$
+
+A função escolhida foi $f(x) = \dfrac{1}{2}x_1 + 2x_2 + 1$, e ruído com valores entre $0$ e $0.25$.
+
 # Resultados
 
 ## Artificial I
@@ -73,6 +81,41 @@ desejado: 3.1593, calculado: 3.1932
 
 ## Artificial II
 
+~~~
+pesos =
+
+  -1.1295   1.2704   1.2337
+
+====  Sumário  =====
+   Realização: 20
+   MSE Treino: 0.0044296012701615
+  RMSE Treino: 0.066555
+
+desejado: 0.60675, calculado: 0.59834
+desejado: 1.1134, calculado: 1.003
+desejado: -0.54716, calculado: -0.5652
+desejado: 1.0842, calculado: 1.2054
+desejado: -0.77545, calculado: -0.66637
+desejado: 1.4893, calculado: 1.5595
+desejado: -0.89882, calculado: -0.81814
+desejado: 1.3185, calculado: 1.4078
+desejado: 1.7939, calculado: 1.7619
+desejado: 1.9537, calculado: 1.8631
+desejado: -0.40767, calculado: -0.41343
+desejado: 3.4808, calculado: 3.5831
+desejado: 2.1366, calculado: 2.1666
+desejado: 3.3792, calculado: 3.4819
+desejado: 0.48878, calculado: 0.44657
+desejado: 1.8456, calculado: 1.8125
+desejado: 3.2059, calculado: 3.3301
+desejado: 1.9266, calculado: 1.9136
+desejado: 2.0343, calculado: 2.0654
+desejado: -0.68298, calculado: -0.76755
+
+    MSE Teste: 0.0044296012701615
+   RMSE Teste: 0.066555
+~~~
+
 # Conclusão
 
 Dado que o ruído adicionado a função não seja muito alto, e que os valores da
@@ -80,3 +123,7 @@ base estejam normalizados, o ADALINE demonstra bons resultados em problemas de
 regressão. Se os valores decimais fossem ignorados a taxa de acerto no problema
 Artificial I, por exemplo, seria de 100% na realização 2, o que mostra sua
 alta precisão, dependendo apenas da modelagem do problema.
+
+Repositório com código-fonte: <https://github.com/atilacamurca/rna-2018-1>
+
+Link para download: <https://github.com/atilacamurca/rna-2018-1/archive/master.zip>
