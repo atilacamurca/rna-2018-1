@@ -27,9 +27,9 @@ ClasseZero = [
 ClasseOne = rand(10, 2) .* 0.5 + 0.5;
 ~~~
 
-## Iris
+## Íris
 
-O problema da Iris é a classificação de uma espécie de flor. Essa base de dados
+O problema da Íris é a classificação de uma espécie de flor. Essa base de dados
 é formada por 3 categorias: Setosa, Versicolor e Virgínica. Como o Perceptron Simples
 não é capaz de classificar problemas não binários foi necessário adaptar o problema
 para classificação de: Setosa ou Outra, onde:
@@ -41,35 +41,43 @@ para classificação de: Setosa ou Outra, onde:
 
 ## Artificial I
 
-Para um dos melhores resultados obtidos de 20 realizações foram encontrados:
+Ao longo de várias execuções foram encontrados resultados sempre acima de 95%
+de acurária. Em alguns dos testes chegou a 100% de acurácia.
 
-Matrix de Confusão:
+Em testes em que houve erros, tivemos por exemplo a Matrix de Confusão:
 
-~~~
-10  0
- 1  3
-~~~
+$$
+\begin{bmatrix}
+10 & 0 \\
+1 & 3
+\end{bmatrix}
+$$
 
-Acurácia: 92.85%
+Taxa de acerto: 92.85%
 
-## Iris
+Ainda assim, a acurária foi de 99.64% com desvio padrão de 1.59%.
 
-Para um dos melhores resultados obtidos de 20 realizações foram encontrados:
+## Íris
 
-Matrix de Confusão:
+No problema da Íris os resultados encontrados encontram-se acima de 93,33%
+na taxa de acerto. Nos melhores testes, foram a Matrix de Confusão:
 
-~~~
-20  1
- 0  9
-~~~
+$$
+\begin{bmatrix}
+20 & 1 \\
+0 & 9
+\end{bmatrix}
+$$
 
-Acurácia: 96.66%
+Taxa de acerto: 96.66%.
+
+De forma geral, a acurácia foi de 95,83% com desvio padrão de 1,48%.
 
 # Conclusão
 
-Apesar de muito simples o Perceptron Simples é um ótimo algoritmo de classificação
-binária, dado qualquer problema ele é capaz de encontrar uma regra de aprendizagem
-que garante encontrar uma solução num número finito de iterações.
+Apesar de elementar, o Perceptron Simples é um ótimo algoritmo de classificação
+binária. Dado qualquer problema, ele é capaz de encontrar uma regra de aprendizagem
+que garante encontrar uma solução ótima num número finito de iterações.
 
 Repositório com código-fonte: <https://github.com/atilacamurca/rna-2018-1>
 
