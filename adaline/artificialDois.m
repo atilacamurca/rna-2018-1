@@ -11,7 +11,10 @@ y_ruido = y + (rand(rows(y), 1) * 0.5) ./ 2;
 min_realizacao_rmse = -1;
 min_realizacao_index = -1;
 
-for realizacao = 1 : 20
+max_realizacoes = 20;
+Sumario = zeros(max_realizacoes, 1);
+
+for realizacao = 1 : max_realizacoes
 
     rperm = randperm(rows(X));
     X_treino = X(rperm(1:80), :);
@@ -44,6 +47,9 @@ for realizacao = 1 : 20
 
     realizacao_mse = meansq(teste - saidas); % Erro Quadrático Médio.
     realizacao_rmse = sqrt(mse);
+    Sumario(realizacao, 1) = realizacao_mse;
+    Sumario(realizacao, 2) = realizacao_rmse;
+
     if min_realizacao_rmse == -1 || min_realizacao_rmse > realizacao_rmse
         min_realizacao_rmse = realizacao_rmse;
         min_realizacao_index = realizacao;
@@ -56,3 +62,7 @@ for realizacao = 1 : 20
 end
 
 disp([' Min RMSE Teste: ', num2str(min_realizacao_rmse), ' index: ', num2str(min_realizacao_index)])
+disp('====  Sumário Geral  ====');
+disp(['    MSE: ', num2str(mean(Sumario(:, 1)))]);
+disp(['   RMSE: ', num2str(mean(Sumario(:, 2)))]);
+

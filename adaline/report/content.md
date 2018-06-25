@@ -77,6 +77,10 @@ desejado: 3.1593, calculado: 3.1932
 
     MSE Teste: 0.00484138581311522
    RMSE Teste: 0.06958
+
+====  Sumário Geral  ====
+    MSE: 0.004906 (média)
+   RMSE: 0.070332 (média)
 ~~~
 
 ## Artificial II
@@ -114,6 +118,10 @@ desejado: -0.68298, calculado: -0.76755
 
     MSE Teste: 0.0044296012701615
    RMSE Teste: 0.066555
+
+====  Sumário Geral  ====
+    MSE: 0.0059548 (média)
+   RMSE: 0.074256 (média)
 ~~~
 
 # Conclusão

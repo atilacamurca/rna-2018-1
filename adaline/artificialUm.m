@@ -8,7 +8,10 @@ y = 2 * X + 3;
 y_ruido = y + (rand(rows(y), 1) .* 0.5 + 0.5) ./ 2;
 % plot(X, y_ruido', 'o');
 
-for realizacao = 1 : 20
+max_realizacoes = 20;
+Sumario = zeros(max_realizacoes, 1);
+
+for realizacao = 1 : max_realizacoes
 
     rperm = randperm(rows(X));
     X_treino = X(rperm(1:80), :);
@@ -41,9 +44,16 @@ for realizacao = 1 : 20
 
     realizacao_mse = meansq(teste - saidas); % Erro Quadrático Médio.
     realizacao_rmse = sqrt(mse);
+    Sumario(realizacao, 1) = realizacao_mse;
+    Sumario(realizacao, 2) = realizacao_rmse;
+    
     disp('');
     disp(['    MSE Teste: ', mat2str(mse)]);
     disp(['   RMSE Teste: ', num2str(rmse)]);
     disp('');
 
 end
+
+disp('====  Sumário Geral  ====');
+disp(['    MSE: ', num2str(mean(Sumario(:, 1)))]);
+disp(['   RMSE: ', num2str(mean(Sumario(:, 2)))]);
