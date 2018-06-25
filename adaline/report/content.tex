@@ -1,4 +1,7 @@
-\section{Introdução}\label{introduuxe7uxe3o}
+% pandoc-fignos: caption name
+\renewcommand{\figurename}{Figura}
+
+\section{Introdução}
 
 Similar ao Perceptron Simples na característica de possuir apenas uma
 camada, o ADALINE se diferencia no tipo de problema a ser resolvido, no
@@ -13,9 +16,9 @@ u = w^T x = \sum^p_{i = 0} w_i x_i
 A ideia é que os pesos se ajustem de tal forma que crie uma reta o mais
 próximo possível de todos os pontos da base de treinamento.
 
-\section{Problemas}\label{problemas}
+\section{Problemas}
 
-\subsection{Artificial I}\label{artificial-i}
+\subsection{Artificial I}
 
 Problema com uma variável independente e uma dependente, tal que:
 
@@ -24,7 +27,7 @@ Problema com uma variável independente e uma dependente, tal que:
 A função escolhida foi \(f(x) = 2x + 3\), e ruído com valores entre
 \(0.25\) e \(0.5\).
 
-\subsection{Artificial II}\label{artificial-ii}
+\subsection{Artificial II}
 
 Problema com duas variáveis independentes, tal que:
 
@@ -35,9 +38,9 @@ f(x) = ax_1 + bx_2 + c
 A função escolhida foi \(f(x) = \dfrac{1}{2}x_1 + 2x_2 + 1\), e ruído
 com valores entre \(0\) e \(0.25\).
 
-\section{Resultados}\label{resultados}
+\section{Resultados}
 
-\subsection{Artificial I}\label{artificial-i-1}
+\subsection{Artificial I}
 
 Seja \(y = w_0 x_0 + w_1 x_1\) e \(x_0 = -1\), a partir dos dados da
 realização abaixo podemos ver que os pesos estão bem próximos do
@@ -81,9 +84,13 @@ desejado: 3.1593, calculado: 3.1932
 
     MSE Teste: 0.00484138581311522
    RMSE Teste: 0.06958
+
+====  Sumário Geral  ====
+    MSE: 0.004906 (média)
+   RMSE: 0.070332 (média)
 \end{verbatim}
 
-\subsection{Artificial II}\label{artificial-ii-1}
+\subsection{Artificial II}
 
 \begin{verbatim}
 pesos =
@@ -118,9 +125,13 @@ desejado: -0.68298, calculado: -0.76755
 
     MSE Teste: 0.0044296012701615
    RMSE Teste: 0.066555
+
+====  Sumário Geral  ====
+    MSE: 0.0059548 (média)
+   RMSE: 0.074256 (média)
 \end{verbatim}
 
-\section{Conclusão}\label{conclusuxe3o}
+\section{Conclusão}
 
 Dado que o ruído adicionado a função não seja muito alto, e que os
 valores da base estejam normalizados, o ADALINE demonstra bons

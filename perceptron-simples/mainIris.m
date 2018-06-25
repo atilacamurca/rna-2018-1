@@ -4,7 +4,7 @@ clear; close all; clc;
 load iris-dataset.mat
 
 max_realizacoes = 20;
-Sumario = zeros(20, 1);
+Sumario = zeros(max_realizacoes, 1);
 
 for realizacao = 1 : max_realizacoes
 
