@@ -3,28 +3,25 @@ clear; close all; clc;
 %% Carrega X e y de arquivo
 load workspacePerceptron.mat
 
-for realizacao = 1 : 20
+max_realizacoes = 20;
+Sumario = zeros(20, 1);
 
-    X_treino_Zero = X(1:20,:);
-    X_teste_Zero = X(21:30,:);
-    X_treino_One = X(31:36,:);
-    X_teste_One = X(37:40,:);
+for realizacao = 1 : max_realizacoes
 
-    Y_treino_Zero = y(1:20);
-    Y_teste_Zero = y(21:30);
-    Y_treino_One = y(31:36);
-    Y_teste_One = y(37:40);
+    rperm_Zero = randperm(30);
+    rperm_One = randperm(10) + 30;
+    
+    X_treino = [X(rperm_Zero(1:20),:) ; X(rperm_One(1:6),:)];
+    X_teste = [X(rperm_Zero(21:30),:) ; X(rperm_One(7:10),:)];
+    
+    y_treino = [y(rperm_Zero(1:20)) ; y(rperm_One(1:6))];
+    y_teste = [y(rperm_Zero(21:30)) ; y(rperm_One(7:10))];
 
-    rperm_Zero = randperm(20);
-    rperm_One = randperm(6);
-
-    X_treino = [X_treino_Zero(rperm_Zero,:) ; X_treino_One(rperm_One,:)];
-    y_treino = [Y_treino_Zero(rperm_Zero) ; Y_treino_One(rperm_One)];
     [pesos, vies] = treinar(X_treino, y_treino);
 
     pesos
-    base_teste = [X_teste_Zero ; X_teste_One];
-    teste = [Y_teste_Zero ; Y_teste_One];
+    base_teste = X_teste;
+    teste = y_teste;
     total_pred_corretas = 0;
     mconfusao = zeros(2, 2);
     for index = 1 : rows(base_teste)
@@ -37,14 +34,15 @@ for realizacao = 1 : 20
         mconfusao(desejado + 1, calculado + 1) += 1;
     end
 
-    acuracia = total_pred_corretas / rows(teste) * 100;
+    taxa_de_acerto = total_pred_corretas / rows(teste) * 100;
+    Sumario(realizacao) = taxa_de_acerto;
 
     disp('====  Sumário  =====');
     disp(['        Realização: ', num2str(realizacao)]);
     disp(['Matriz de Confusão: ', mat2str(mconfusao)]);
-    disp(['          Acurácia: ', num2str(acuracia)]);
+    disp(['    Taxa de Acerto: ', num2str(taxa_de_acerto)]);
     disp('');
-    
+
     %figure(realizacao);
     %dots = -2:0.005:2;
     % plot(X_teste_Zero, Y_teste_Zero, 'bo', X_teste_One, Y_teste_One, 'rx');
@@ -52,7 +50,12 @@ for realizacao = 1 : 20
     %    X_teste_Zero, Y_teste_Zero, 'b*', X_teste_One, Y_teste_One, 'rx');
 end
 
+disp('====  Sumário Geral  ====');
+disp(['        Acurácia: ', num2str(mean(Sumario))]);
+disp(['   Desvio Padrão: ', num2str(std(Sumario))]);
+
 % Plot hyperplano classificador
 % x1 = -1:1:1;
 % x2 = - (pesos(3) + x1 * pesos(1)) / pesos(2);
 % plot(x1,x2,'g');
+% plot(X_teste, 'ro', X_teste_One, 'bo');

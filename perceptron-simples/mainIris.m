@@ -3,7 +3,10 @@ clear; close all; clc;
 %% Carrega X e y de arquivo
 load iris-dataset.mat
 
-for realizacao = 1 : 20
+max_realizacoes = 20;
+Sumario = zeros(20, 1);
+
+for realizacao = 1 : max_realizacoes
 
     X_treino_setosa = X(1:40,:);
     X_teste_setosa = X(41:50,:);
@@ -39,14 +42,19 @@ for realizacao = 1 : 20
         mconfusao(desejado + 1, calculado + 1) += 1;
     end
 
-    acuracia = total_pred_corretas / rows(teste) * 100;
+    taxa_de_acerto = total_pred_corretas / rows(teste) * 100;
+    Sumario(realizacao) = taxa_de_acerto;
 
     disp('====  Sumário  =====');
     disp(['        Realização: ', num2str(realizacao)]);
     disp(['Matriz de Confusão: ', mat2str(mconfusao)]);
-    disp(['          Acurácia: ', num2str(acuracia)]);
+    disp(['          Acurácia: ', num2str(taxa_de_acerto)]);
     disp('');
     
     %figure(realizacao);
     %plot(X_teste_setosa(:,1:2), Y_teste_setosa, 'bo', X_teste_outras(:,1:2), Y_teste_outras, 'rx');
 end
+
+disp('====  Sumário Geral  ====');
+disp(['        Acurácia: ', num2str(mean(Sumario))]);
+disp(['   Desvio Padrão: ', num2str(std(Sumario))]);
