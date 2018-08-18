@@ -42,9 +42,7 @@ function [Pesos, vies] = treinar (X, y, num_classes)
                 calculado(cl) = dot(Pesos(cl, :), x_);
             end
 
-            % TODO: esse trecho faz com que o método pare sempre na primeira iteração
-            % verificar se há algum problema
-            sum_erro += sum(desejado - sinal(calculado)) ~= 0;
+            sum_erro += isequal(desejado, sinal(calculado)) ~= 1;
         end
 
         if sum_erro == 0

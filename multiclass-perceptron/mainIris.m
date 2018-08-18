@@ -3,34 +3,54 @@ clear; close all; clc;
 %% Carrega X e y de arquivo
 load iris-dataset.mat
 
-max_realizacoes = 1;
+max_realizacoes = 20;
 Sumario = zeros(max_realizacoes, 1);
 num_classes = columns(y);
 
 for realizacao = 1 : max_realizacoes
 
-    X_treino_setosa = X(1:40,:);
-    X_teste_setosa = X(41:50,:);
-    %% TODO: substituir outras por parte de versicolor e virginica
-    X_treino_outras = [X(51:90,:) ; X(101:140,:)];
-    X_teste_outras = [X(91:100,:) ; X(141:150,:)];
+    X_setosa = X(1:50,:);
+    X_versicolor = X(51:100,:);
+    X_virginica = X(101:150,:);
 
-    Y_treino_setosa = y(1:40,:);
-    Y_teste_setosa = y(41:50,:);
-    Y_treino_outras = [y(51:90,:) ; y(101:140,:)];
-    Y_teste_outras = [y(91:100,:) ; y(141:150,:)];
+    y_setosa = y(1:50,:);
+    y_versicolor = y(51:100,:);
+    y_virginica = y(101:150,:);
 
-    rperm_setosa = randperm(rows(X_treino_setosa));
-    rperm_outras = randperm(rows(X_treino_outras));
+    rperm_setosa = randperm(rows(X_setosa));
+    rperm_versicolor = randperm(rows(X_versicolor));
+    rperm_virginica = randperm(rows(X_virginica));
 
-    X_treino = [X_treino_setosa(rperm_setosa,:) ; X_treino_outras(rperm_outras,:)];
-    y_treino = [Y_treino_setosa(rperm_setosa,:) ; Y_treino_outras(rperm_outras,:)];
-    [Pesos, vies] = treinar(X_treino, y_treino, num_classes);
+    X_treino = [
+        X_setosa(rperm_setosa(1:40),:);
+        X_versicolor(rperm_versicolor(1:40),:);
+        X_virginica(rperm_virginica(1:40),:)
+    ];
+
+    X_teste = [
+        X_setosa(rperm_setosa(41:50),:);
+        X_versicolor(rperm_versicolor(41:50),:);
+        X_virginica(rperm_virginica(41:50),:)
+    ];
+
+    Y_treino = [
+        y_setosa(rperm_setosa(1:40),:);
+        y_versicolor(rperm_versicolor(1:40),:);
+        y_virginica(rperm_virginica(1:40),:)
+    ];
+
+    Y_teste = [
+        y_setosa(rperm_setosa(41:50),:);
+        y_versicolor(rperm_versicolor(41:50),:);
+        y_virginica(rperm_virginica(41:50),:)
+    ];
+
+    [Pesos, vies] = treinar(X_treino, Y_treino, num_classes);
 
     printf('\n')
     Pesos
-    base_teste = [X_teste_setosa ; X_teste_outras];
-    teste = [Y_teste_setosa ; Y_teste_outras];
+    base_teste = X_teste;
+    teste = Y_teste;
     total_pred_corretas = 0;
     mconfusao = zeros(num_classes, num_classes);
     for index = 1 : rows(base_teste)
@@ -38,14 +58,12 @@ for realizacao = 1 : max_realizacoes
             calculado(cl) = dot(Pesos(cl, :), [ [vies] base_teste(index,:)]);
         end
         desejado = teste(index, :);
-        sum(desejado - calculado) == 0
-        total_pred_corretas += sum(desejado - sinal(calculado)) == 0;
+        total_pred_corretas += isequal(desejado, sinal(calculado));
         [_, idx_desejado] = max(desejado);
         [_, idx_calculado] = max(calculado);
         mconfusao(idx_desejado, idx_calculado) += 1;
     end
 
-    %% TODO: taxa_de_acerto está sempre apresentando valor 100%
     total_pred_corretas
     taxa_de_acerto = total_pred_corretas / rows(teste) * 100;
     Sumario(realizacao) = taxa_de_acerto;
