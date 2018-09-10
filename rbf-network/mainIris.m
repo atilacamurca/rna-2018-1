@@ -58,7 +58,7 @@ for realizacao = 1 : max_realizacoes
             calculado(cl) = dot(Pesos(cl, :), [ [vies] base_teste(index,:)]);
         end
         desejado = teste(index, :);
-        total_pred_corretas += isequal(desejado, sinal(calculado));
+        total_pred_corretas += isequal(desejado, sinalMulticlass(calculado));
         [_, idx_desejado] = max(desejado);
         [_, idx_calculado] = max(calculado);
         mconfusao(idx_desejado, idx_calculado) += 1;
