@@ -1,7 +1,7 @@
 clear; close all; clc;
 
 %% Carrega X e y de arquivo
-load iris-dataset.mat
+load vertebral-column-dataset.mat
 
 max_realizacoes = 20;
 Sumario = zeros(max_realizacoes, 1);
@@ -9,46 +9,11 @@ num_classes = columns(y);
 
 for realizacao = 1 : max_realizacoes
 
-    X_setosa = X(1:50,:);
-    X_versicolor = X(51:100,:);
-    X_virginica = X(101:150,:);
-
-    y_setosa = y(1:50,:);
-    y_versicolor = y(51:100,:);
-    y_virginica = y(101:150,:);
-
     rperm_X = randperm(rows(X));
-    rperm_setosa = randperm(rows(X_setosa));
-    rperm_versicolor = randperm(rows(X_versicolor));
-    rperm_virginica = randperm(rows(X_virginica));
-
-    %%X_treino = [
-    %%    X_setosa(rperm_setosa(1:40),:);
-    %%    X_versicolor(rperm_versicolor(1:40),:);
-    %%    X_virginica(rperm_virginica(1:40),:)
-    %%];
-    X_treino = X(rperm_X(1:120),:);
-
-    %%X_teste = [
-    %%    X_setosa(rperm_setosa(41:50),:);
-    %%    X_versicolor(rperm_versicolor(41:50),:);
-    %%    X_virginica(rperm_virginica(41:50),:)
-    %%];
-    X_teste = X(rperm_X(121:150),:);
-
-    %%Y_treino = [
-    %%    y_setosa(rperm_setosa(1:40),:);
-    %%    y_versicolor(rperm_versicolor(1:40),:);
-    %%    y_virginica(rperm_virginica(1:40),:)
-    %%];
-    Y_treino = y(rperm_X(1:120),:);
-
-    %%Y_teste = [
-    %%    y_setosa(rperm_setosa(41:50),:);
-    %%    y_versicolor(rperm_versicolor(41:50),:);
-    %%    y_virginica(rperm_virginica(41:50),:)
-    %%];
-    Y_teste = y(rperm_X(121:150),:);
+    X_treino = X(rperm_X(1:248),:);
+    X_teste = X(rperm_X(249:310),:);
+    Y_treino = y(rperm_X(1:248),:);
+    Y_teste = y(rperm_X(249:310),:);
 
     [Pesos, vies] = treinar(X_treino, Y_treino);
 

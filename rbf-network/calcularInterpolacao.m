@@ -9,7 +9,7 @@
 
 function H = calcularInterpolacao (X, centros, sigma)
     [num_linhas, num_colunas] = size(X);
-    [num_linhas_centros, num_colunas_centros] = size(centros);
+    % [num_linhas_centros, num_colunas_centros] = size(centros);
     H = []; %zeros(num_linhas, num_colunas_centros);
     for i = 1 : num_linhas
         linha = [];
