@@ -1,5 +1,5 @@
 %% Treinar RBF
-%% @deftypefn {} {@var{Pesos} =, @var{vies} =} treinar (@var{X}, @var{y})
+%% @deftypefn {} {@var{Pesos} =, @var{Centros} =, @var{vies} =} treinar (@var{X}, @var{y})
 %%
 %% @seealso{}
 %% @end deftypefn
@@ -7,7 +7,7 @@
 %% Author: Átila Camurça <atila@the-machine>
 %% Created: 2018-09-08
 
-function [Pesos, vies] = treinar (X, y)
+function [Pesos, Centros, vies] = treinar (X, y)
 
     [num_linhas, num_colunas] = size(X);
     % TODO: realizar busca em grade com validação cruzada de k-partes
@@ -15,15 +15,10 @@ function [Pesos, vies] = treinar (X, y)
     abertura = 0.15;
 
     rperm = randperm(num_linhas);
-    random_centros = X(rperm(1:num_centros),:);
+    Centros = X(rperm(1:num_centros),:);
 
-    H = calcularInterpolacao(X, random_centros, abertura);
-    [linhas_H,_] = size(H);
-    H = [-ones(linhas_H, 1), H];
-    H_transp = H';
-    Inv = pinv(H_transp * H);
-    A = Inv * H_transp;
-    Pesos = (A * y)';
+    H = calcularInterpolacao(X, Centros, abertura);
+    Pesos = olam(H, y);
     vies = -1;
 
 end

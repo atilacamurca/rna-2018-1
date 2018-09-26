@@ -22,54 +22,31 @@ for realizacao = 1 : max_realizacoes
     rperm_versicolor = randperm(rows(X_versicolor));
     rperm_virginica = randperm(rows(X_virginica));
 
-    %%X_treino = [
-    %%    X_setosa(rperm_setosa(1:40),:);
-    %%    X_versicolor(rperm_versicolor(1:40),:);
-    %%    X_virginica(rperm_virginica(1:40),:)
-    %%];
     X_treino = X(rperm_X(1:120),:);
-
-    %%X_teste = [
-    %%    X_setosa(rperm_setosa(41:50),:);
-    %%    X_versicolor(rperm_versicolor(41:50),:);
-    %%    X_virginica(rperm_virginica(41:50),:)
-    %%];
     X_teste = X(rperm_X(121:150),:);
 
-    %%Y_treino = [
-    %%    y_setosa(rperm_setosa(1:40),:);
-    %%    y_versicolor(rperm_versicolor(1:40),:);
-    %%    y_virginica(rperm_virginica(1:40),:)
-    %%];
     Y_treino = y(rperm_X(1:120),:);
-
-    %%Y_teste = [
-    %%    y_setosa(rperm_setosa(41:50),:);
-    %%    y_versicolor(rperm_versicolor(41:50),:);
-    %%    y_virginica(rperm_virginica(41:50),:)
-    %%];
     Y_teste = y(rperm_X(121:150),:);
 
-    [Pesos, vies] = treinar(X_treino, Y_treino);
+    [Pesos, Centros, vies] = treinar(X_treino, Y_treino);
 
     printf('\n')
-    Pesos
-    base_teste = X_teste;
-    teste = Y_teste;
+    H = calcularInterpolacao(X_teste, Centros, 0.15);
+    base_teste = H;
     total_pred_corretas = 0;
     mconfusao = zeros(num_classes, num_classes);
     for index = 1 : rows(base_teste)
         for cl = 1 : num_classes
             calculado(cl) = dot(Pesos(cl, :), [ [vies] base_teste(index,:)]);
         end
-        desejado = teste(index, :);
+        desejado = Y_teste(index, :);
         total_pred_corretas += isequal(desejado, sinalMulticlass(calculado));
         [_, idx_desejado] = max(desejado);
         [_, idx_calculado] = max(calculado);
         mconfusao(idx_desejado, idx_calculado) += 1;
     end
 
-    rowsTeste = rows(teste);
+    rowsTeste = rows(Y_teste);
     taxa_de_acerto = total_pred_corretas / rowsTeste * 100;
     Sumario(realizacao) = taxa_de_acerto;
 

@@ -53,102 +53,82 @@ onde:
 
 \section{Resultados}
 
-Os resultados de ambos problemas foram bem abaixo do esperado,
-provavelmente por um problema na elaboração do algoritmo. Seguem abaixo
-os resultados apresentando a matriz de confusão para as realizações com
+Os resultados de ambos problemas foram dentro do esperado, usando 40\%
+da base de teste como os centros e um sigma de \texttt{0.15}. Seguem os
+resultados apresentando a matriz de confusão para as realizações com
 maior taxa de acerto.
 
 \subsection{Íris}
 
+No problema da Íris os resultados encontrados encontram-se acima de
+90,00\% na taxa de acerto.
+
 Pior resultado:
 
 \begin{verbatim}
-Pesos =
-
-     6.4735    78.6244   -98.9655    22.8229     9.3454
-    -3.2905  -119.7229   133.0127   -17.1255    -1.8099
-    -4.1831    41.0985   -34.0472    -5.6974    -7.5355
-
 ====  Sumário  =====
-Num. Pred corretas: 0 de 30
-        Realização: 2
-Matriz de Confusão: [0 0 10;8 0 0;12 0 0]
-    Taxa de acerto: 0
+Num. Pred corretas: 27 de 30
+        Realização: 7
+Matriz de Confusão: [10 0 0;0 7 1;0 2 10]
+    Taxa de acerto: 90
 \end{verbatim}
 
 Melhor resultado:
 
 \begin{verbatim}
-Pesos =
-
-     5.8920   -45.6733   281.4740  -307.4812    82.1001
-    -4.1660    22.8844  -191.2339   207.2235   -45.7574
-    -2.7261    22.7889   -90.2401   100.2577   -36.3427
-
 ====  Sumário  =====
-Num. Pred corretas: 19 de 30
-        Realização: 20
-Matriz de Confusão: [8 0 0;0 11 0;0 11 0]
-    Taxa de acerto: 63.3333
+Num. Pred corretas: 30 de 30
+        Realização: 16
+Matriz de Confusão: [10 0 0;0 9 0;0 0 11]
+    Taxa de acerto: 100
 \end{verbatim}
 
 Sumário:
 
 \begin{verbatim}
 ====  Sumário Geral  ====
-        Acurácia: 26.8333
-   Desvio Padrão: 18.5584
+        Acurácia: 95.1667
+   Desvio Padrão: 2.7519
 \end{verbatim}
 
 \subsection{Coluna Vertebral}
 
+No problema da oluna Vertebral os resultados encontrados encontram-se
+acima de 77,00\% na taxa de acerto.
+
 Pior resultado:
 
 \begin{verbatim}
-Pesos =
-
- -3.1867    -4.9651    -6.3159    16.5321    -5.1169    12.6423  -16.6953
--31.6224 -2174.6339  4287.5155 -3182.3625 -1754.8589  2175.0692  601.4591
- 33.8090  2179.5990 -4281.1997  3165.8303  1759.9758 -2187.7114 -584.7637
-
 ====  Sumário  =====
-Num. Pred corretas: 15 de 62
+Num. Pred corretas: 48 de 62
         Realização: 5
-Matriz de Confusão: [0 6 1;1 8 27;1 11 7]
-    Taxa de acerto: 24.1935
+Matriz de Confusão: [6 0 7;0 23 3;4 0 19]
+    Taxa de acerto: 77.4194
 \end{verbatim}
 
 Melhor resultado:
 
 \begin{verbatim}
-Pesos =
-
-  8.5008  23.3674   -53.6846   -73.4490   -19.4075    57.3331    80.2903
--51.0027  657.8846  729.6177   335.9711 -2032.2789  1504.9526 -1273.4145
- 41.5018 -681.2524 -675.9331  -262.5218  2051.6862 -1562.2856  1193.1245
-
 ====  Sumário  =====
-Num. Pred corretas: 37 de 62
-        Realização: 12
-Matriz de Confusão: [0 13 0;0 37 0;0 12 0]
-    Taxa de acerto: 59.6774
+Num. Pred corretas: 56 de 62
+        Realização: 20
+Matriz de Confusão: [10 0 4;0 36 1;1 0 10]
+    Taxa de acerto: 90.3226
 \end{verbatim}
 
 Sumário:
 
 \begin{verbatim}
 ====  Sumário Geral  ====
-        Acurácia: 41.0484
-   Desvio Padrão: 11.0448
+        Acurácia: 84.5161
+   Desvio Padrão: 3.6028
 \end{verbatim}
 
 \section{Conclusão}
 
-Devido a possíveis problemas na implementação e a falta de um algoritmo
-de seleção de parâmetros, por exemplo busca em grade com validação
-cruzada de k-partes, os resultados obtidos foram muito abaixo do
-esperado. Será necessário rever todo o algoritmo para identificar onde
-deve ser modificado para um melhor resultado.
+Devido a falta de um algoritmo de seleção de parâmetros, por exemplo
+busca em grade com validação cruzada de k-partes, os resultados obtidos
+foram dentro do esperado mas poderiam ser melhores e mais eficientes.
 
 Repositório com código-fonte:
 \url{https://github.com/atilacamurca/rna-2018-1}

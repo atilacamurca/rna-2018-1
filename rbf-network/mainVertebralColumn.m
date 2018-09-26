@@ -15,26 +15,25 @@ for realizacao = 1 : max_realizacoes
     Y_treino = y(rperm_X(1:248),:);
     Y_teste = y(rperm_X(249:310),:);
 
-    [Pesos, vies] = treinar(X_treino, Y_treino);
+    [Pesos, Centros, vies] = treinar(X_treino, Y_treino);
 
     printf('\n')
-    Pesos
-    base_teste = X_teste;
-    teste = Y_teste;
+    H = calcularInterpolacao(X_teste, Centros, 0.15);
+    base_teste = H;
     total_pred_corretas = 0;
     mconfusao = zeros(num_classes, num_classes);
     for index = 1 : rows(base_teste)
         for cl = 1 : num_classes
             calculado(cl) = dot(Pesos(cl, :), [ [vies] base_teste(index,:)]);
         end
-        desejado = teste(index, :);
+        desejado = Y_teste(index, :);
         total_pred_corretas += isequal(desejado, sinalMulticlass(calculado));
         [_, idx_desejado] = max(desejado);
         [_, idx_calculado] = max(calculado);
         mconfusao(idx_desejado, idx_calculado) += 1;
     end
 
-    rowsTeste = rows(teste);
+    rowsTeste = rows(Y_teste);
     taxa_de_acerto = total_pred_corretas / rowsTeste * 100;
     Sumario(realizacao) = taxa_de_acerto;
 
