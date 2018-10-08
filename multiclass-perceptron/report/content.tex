@@ -8,6 +8,12 @@ ser separados linearmente. Mas para problemas com mais de uma classe é
 necessário adaptar o algoritmo, adicionando mais neurônios, em que cada
 um prediz uma classe.
 
+Além disso também é possível estender o algoritmo para incluir funções
+não-lineares, como por exemplo sigmóide logística ou sigmóide tangente
+hiberbólica. Redes com funções sigmóides podem aproximar uma função
+não-linear contínua para uma acurácia arbitrária com uma única camada
+escondida.
+
 \section{Problemas}
 
 \subsection{Íris}
@@ -32,31 +38,100 @@ onde:
 
 \subsection{Íris}
 
-No problema da Íris os resultados encontrados encontram-se acima de
-80,00\% na taxa de acerto. Nesse cenário a Matrix de Confusão foi a
-seguinte:
+No problema da Íris, usando rede perceptron com neurônios degrau, os
+resultados encontrados encontram-se acima de 80,00\% na taxa de acerto.
 
-\[
-\begin{bmatrix}
-10 & 0 & 0 \\
-3 & 4 & 3 \\
-0 & 0 & 10
-\end{bmatrix}
-\]
+Pior resultado:
 
-Nos melhores testes, foram a Matrix de Confusão:
+\begin{verbatim}
+Num. Pred corretas: 26 de 30
+====  Sumário  =====
+        Realização: 19
+Matriz de Confusão: [10 0 0;3 4 3;0 0 10]
+    Taxa de Acerto: 80
+\end{verbatim}
 
-\[
-\begin{bmatrix}
-10 & 0 & 0 \\
-0 & 10 & 0 \\
-0 & 0 & 10
-\end{bmatrix}
-\]
+Melhor resultado:
 
-Taxa de acerto: 100.00\%.
+\begin{verbatim}
+Num. Pred corretas: 30 de 30
+====  Sumário  =====
+        Realização: 3
+Matriz de Confusão: [10 0 0;0 10 0;0 0 10]
+    Taxa de Acerto: 100
+\end{verbatim}
 
-De forma geral, a acurácia foi de 92,00\% com desvio padrão de 5,9628\%.
+Sumário:
+
+\begin{verbatim}
+====  Sumário Geral  ====
+        Acurácia: 92
+   Desvio Padrão: 5.9628
+\end{verbatim}
+
+Para uma rede perceptron com neurônios que usam função de ativação
+sigmóide logística os resultados encontram-se acima de 73\% na taxa de
+acerto.
+
+Pior resultado:
+
+\begin{verbatim}
+Num. Pred corretas: 22 de 30
+====  Sumário  =====
+        Realização: 20
+Matriz de Confusão: [10 0 0;0 2 8;0 0 10]
+    Taxa de Acerto: 73.3333
+\end{verbatim}
+
+Melhor resultado:
+
+\begin{verbatim}
+Num. Pred corretas: 28 de 30
+====  Sumário  =====
+        Realização: 14
+Matriz de Confusão: [10 0 0;0 8 2;0 0 10]
+    Taxa de Acerto: 93.3333
+\end{verbatim}
+
+Sumário:
+
+\begin{verbatim}
+====  Sumário Geral  ====
+        Acurácia: 85.8333
+   Desvio Padrão: 5.8114
+\end{verbatim}
+
+Para uma rede perceptron com neurônios que usam função de ativação
+sigmóide tangente hiperbólica os resultados encontram-se acima de 73\%
+na taxa de acerto.
+
+Pior resultado:
+
+\begin{verbatim}
+Num. Pred corretas: 26 de 30
+====  Sumário  =====
+        Realização: 19
+Matriz de Confusão: [10 0 0;0 7 3;0 1 9]
+    Taxa de Acerto: 86.6667
+\end{verbatim}
+
+Melhor resultado:
+
+\begin{verbatim}
+Num. Pred corretas: 30 de 30
+====  Sumário  =====
+        Realização: 3
+Matriz de Confusão: [10 0 0;0 10 0;0 0 10]
+    Taxa de Acerto: 100
+\end{verbatim}
+
+Sumário:
+
+\begin{verbatim}
+====  Sumário Geral  ====
+        Acurácia: 93.3333
+   Desvio Padrão: 3.7463
+\end{verbatim}
 
 \section{Conclusão}
 

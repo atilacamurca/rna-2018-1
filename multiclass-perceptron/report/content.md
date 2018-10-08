@@ -4,28 +4,12 @@ O perceptron simples é capaz de resolver problemas binários, que podem ser sep
 linearmente. Mas para problemas com mais de uma classe é necessário adaptar o
 algoritmo, adicionando mais neurônios, em que cada um prediz uma classe.
 
+Além disso também é possível estender o algoritmo para incluir funções não-lineares,
+como por exemplo sigmóide logística ou sigmóide tangente hiberbólica. Redes com
+funções sigmóides podem aproximar uma função não-linear contínua para uma acurácia
+arbitrária com uma única camada escondida.
+
 # Problemas
-
-<!--
-## Artificial I
-
-Para o problema Artificial I foi gerado uma base no seguinte formato:
-
-* Para valores entre $(0 : 0.2; 0 : 0.2), (0 : 0.2; 0.5 : 1), (0.5 : 1; 0 : 0.2)$ é considerado classe 0, com 30 itens na base;
-* Para valores entre $(0.5 : 1; 0.5 : 1)$ é considerado classe 1, com 10 itens na base.
-
-~~~octave
-ClasseZero = [
-    % 0 0
-    rand(10, 1) .* 0.2 rand(10, 1) .* 0.2;
-    % 0 1
-    rand(10, 1) .* 0.2 rand(10, 1) .* 0.5 + 0.5;
-    % 1 0
-    rand(10, 1) .* 0.5 + 0.5 rand(10, 1) .* 0.2;
-];
-ClasseOne = rand(10, 2) .* 0.5 + 0.5;
-~~~
--->
 
 ## Íris
 
@@ -38,52 +22,100 @@ O problema da Íris é a classificação de uma espécie de flor. Essa base de d
 
 # Resultados
 
-<!--
-## Artificial I
-
-Ao longo de várias execuções foram encontrados resultados sempre acima de 95%
-de acurária. Em alguns dos testes chegou a 100% de acurácia.
-
-Em testes em que houve erros, tivemos por exemplo a Matrix de Confusão:
-
-$$
-\begin{bmatrix}
-10 & 0 \\
-1 & 3
-\end{bmatrix}
-$$
-
-Taxa de acerto: 92.85%
-
-Ainda assim, a acurária foi de 99.64% com desvio padrão de 1.59%.
--->
-
 ## Íris
 
-No problema da Íris os resultados encontrados encontram-se acima de 80,00%
-na taxa de acerto. Nesse cenário a Matrix de Confusão foi a seguinte:
+No problema da Íris, usando rede perceptron com neurônios degrau, os resultados
+encontrados encontram-se acima de 80,00% na taxa de acerto.
 
-$$
-\begin{bmatrix}
-10 & 0 & 0 \\
-3 & 4 & 3 \\
-0 & 0 & 10
-\end{bmatrix}
-$$
+Pior resultado:
 
-Nos melhores testes, foram a Matrix de Confusão:
+```
+Num. Pred corretas: 26 de 30
+====  Sumário  =====
+        Realização: 19
+Matriz de Confusão: [10 0 0;3 4 3;0 0 10]
+    Taxa de Acerto: 80
+```
 
-$$
-\begin{bmatrix}
-10 & 0 & 0 \\
-0 & 10 & 0 \\
-0 & 0 & 10
-\end{bmatrix}
-$$
+Melhor resultado:
 
-Taxa de acerto: 100.00%.
+```
+Num. Pred corretas: 30 de 30
+====  Sumário  =====
+        Realização: 3
+Matriz de Confusão: [10 0 0;0 10 0;0 0 10]
+    Taxa de Acerto: 100
+```
 
-De forma geral, a acurácia foi de 92,00% com desvio padrão de 5,9628%.
+Sumário:
+
+```
+====  Sumário Geral  ====
+        Acurácia: 92
+   Desvio Padrão: 5.9628
+```
+
+Para uma rede perceptron com neurônios que usam função de ativação sigmóide
+logística os resultados encontram-se acima de 73% na taxa de acerto.
+
+Pior resultado:
+
+```
+Num. Pred corretas: 22 de 30
+====  Sumário  =====
+        Realização: 20
+Matriz de Confusão: [10 0 0;0 2 8;0 0 10]
+    Taxa de Acerto: 73.3333
+```
+
+Melhor resultado:
+
+```
+Num. Pred corretas: 28 de 30
+====  Sumário  =====
+        Realização: 14
+Matriz de Confusão: [10 0 0;0 8 2;0 0 10]
+    Taxa de Acerto: 93.3333
+```
+
+Sumário:
+
+```
+====  Sumário Geral  ====
+        Acurácia: 85.8333
+   Desvio Padrão: 5.8114
+```
+
+Para uma rede perceptron com neurônios que usam função de ativação sigmóide
+tangente hiperbólica os resultados encontram-se acima de 73% na taxa de acerto.
+
+Pior resultado:
+
+```
+Num. Pred corretas: 26 de 30
+====  Sumário  =====
+        Realização: 19
+Matriz de Confusão: [10 0 0;0 7 3;0 1 9]
+    Taxa de Acerto: 86.6667
+```
+
+Melhor resultado:
+
+```
+Num. Pred corretas: 30 de 30
+====  Sumário  =====
+        Realização: 3
+Matriz de Confusão: [10 0 0;0 10 0;0 0 10]
+    Taxa de Acerto: 100
+```
+
+Sumário:
+
+```
+====  Sumário Geral  ====
+        Acurácia: 93.3333
+   Desvio Padrão: 3.7463
+```
 
 # Conclusão
 

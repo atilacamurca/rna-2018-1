@@ -7,6 +7,15 @@ max_realizacoes = 20;
 Sumario = zeros(max_realizacoes, 1);
 num_classes = columns(y);
 
+fn_siglog = @(x)(x .* (1 - x));
+fn_sinal_siglog = @(x)(1 ./ (1 + exp(-x)));
+
+fn_tanh = @(x)(0.5 .* (1 - x.^2));
+fn_sinal_tanh = @(x)(1 - exp(-x) ./ (1 + exp(-x)));
+
+fn_linear = @(x)(1);
+fn_sinal_linear = @(x)(x);
+
 for realizacao = 1 : max_realizacoes
 
     X_setosa = X(1:50,:);
@@ -45,7 +54,7 @@ for realizacao = 1 : max_realizacoes
         y_virginica(rperm_virginica(41:50),:)
     ];
 
-    [Pesos, vies] = treinar(X_treino, Y_treino, num_classes);
+    [Pesos, vies] = treinar(X_treino, Y_treino, num_classes, fn_sinal_siglog, fn_siglog);
 
     printf('\n')
     Pesos
@@ -64,14 +73,15 @@ for realizacao = 1 : max_realizacoes
         mconfusao(idx_desejado, idx_calculado) += 1;
     end
 
-    total_pred_corretas
+    rowsTeste = rows(teste);
     taxa_de_acerto = total_pred_corretas / rows(teste) * 100;
     Sumario(realizacao) = taxa_de_acerto;
 
+    disp(['Num. Pred corretas: ', num2str(total_pred_corretas), ' de ', num2str(rowsTeste)]);
     disp('====  Sumário  =====');
     disp(['        Realização: ', num2str(realizacao)]);
     disp(['Matriz de Confusão: ', mat2str(mconfusao)]);
-    disp(['          Acurácia: ', num2str(taxa_de_acerto)]);
+    disp(['    Taxa de Acerto: ', num2str(taxa_de_acerto)]);
     disp('');
 
     %figure(realizacao);
