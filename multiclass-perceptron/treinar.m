@@ -1,5 +1,6 @@
 %% -*- texinfo -*-
-%% @deftypefn {} {@var{retval} =} treinar (@var{input1}, @var{input2})
+%% @deftypefn {} {@var{Pesos} =, @var{vies} =} treinar (@var{X}, @var{y},
+%%    @var{num_classes}, @var{}fn_sinal, @var{fn_sigmoid})
 %%
 %% @seealso{}
 %% @end deftypefn
@@ -7,7 +8,7 @@
 %% Author: Átila Camurça <atila@the-machine>
 %% Created: 2018-08-11
 
-function [Pesos, vies] = treinar (X, y, num_classes)
+function [Pesos, vies] = treinar (X, y, num_classes, fn_sinal, fn_sigmoid)
 
     [num_linhas, num_colunas] = size(X);
     % Inicializar pesos com valores aleatórios normalizados
@@ -30,8 +31,10 @@ function [Pesos, vies] = treinar (X, y, num_classes)
             for cl = 1 : num_classes
                 calculado(cl) = dot(Pesos(cl, :), x_);
             end
-            erro = desejado - sinal(calculado);
-            Pesos = Pesos + taxa_aprendizagem .* (x_ .* erro');
+            sinal_calculado = fn_sinal(calculado);
+            erro = desejado - sinal_calculado;
+            aux = ((erro .* fn_sigmoid(sinal_calculado))' .* x_);
+            Pesos = Pesos + taxa_aprendizagem * aux;
         end
 
         % condição de parada, quando não erra somatório do erro é zero
